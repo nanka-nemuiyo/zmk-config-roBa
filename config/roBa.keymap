@@ -150,77 +150,145 @@
         window_left: window_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_WIN &kp LEFT>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_WIN>,
+                <&macro_tap>,
+                <&kp LEFT>,
+                <&macro_release>,
+                <&kp LEFT_WIN>;
             label = "WINDOW_LEFT";
         };
 
         window_right: window_right {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_WIN &kp RIGHT>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_WIN>,
+                <&macro_tap>,
+                <&kp RIGHT>,
+                <&macro_release>,
+                <&kp LEFT_WIN>;
             label = "WINDOW_RIGHT";
         };
 
         window_up: window_up {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_WIN &kp UP>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_WIN>,
+                <&macro_tap>,
+                <&kp UP>,
+                <&macro_release>,
+                <&kp LEFT_WIN>;
             label = "WINDOW_UP";
         };
 
         window_down: window_down {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_WIN &kp DOWN>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_WIN>,
+                <&macro_tap>,
+                <&kp DOWN>,
+                <&macro_release>,
+                <&kp LEFT_WIN>;
             label = "WINDOW_DOWN";
         };
 
         screen_shot: screen_shot {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_WIN &kp LEFT_SHIFT &kp S>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_WIN>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp S>,
+                <&macro_release>,
+                <&kp LEFT_WIN>,
+                <&kp LEFT_SHIFT>;
             label = "SCREEN_SHOT";
         };
 
         select_left: select_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT &kp LEFT>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp LEFT>,
+                <&macro_release>,
+                <&kp LEFT_SHIFT>;
             label = "SELECT_LEFT";
         };
 
         select_right: select_right {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT &kp RIGHT>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp RIGHT>,
+                <&macro_release>,
+                <&kp LEFT_SHIFT>;
             label = "SELECT_RIGHT";
         };
 
         select_up: select_up {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT &kp UP>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp UP>,
+                <&macro_release>,
+                <&kp LEFT_SHIFT>;
             label = "SELECT_UP";
         };
 
         select_down: select_down {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT &kp DOWN>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp DOWN>,
+                <&macro_release>,
+                <&kp LEFT_SHIFT>;
             label = "SELECT_DOWN";
         };
 
         select_home: select_home {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT &kp HOME>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp HOME>,
+                <&macro_release>,
+                <&kp LEFT_SHIFT>;
             label = "SELECT_HOME";
         };
 
         select_end: select_end {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT &kp END>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp END>,
+                <&macro_release>,
+                <&kp LEFT_SHIFT>;
             label = "SELECT_END";
         };
 
@@ -260,7 +328,7 @@
             bindings = <
 &kp Q             &kp W         &kp E         &kp R         &kp T                                      &kp Y      &kp U  &lt 0 I  &kp O   &kp P
 &lt 4 A           &lt 5 S       &kp D         &kp F         &kp G        &none          &kp MINUS      &kp H      &kp J  &kp K    &kp L   &mo 2
-&mt LEFT_SHIFT Z  &lt 6 X       &kp C         &kp V         &lt 7 B      &mkp MB3       &kp SLASH      &lt 1 N    &kp M  &mo 10   &mo 11  &lt 12 COMMA
+&mt LEFT_SHIFT Z  &lt 6 X       &kp C         &kp V         &lt 7 B      &mkp MB3       &kp SLASH      &lt 1 N    &kp M  &mo 10   &mo 12  &lt 11 COMMA
 &kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 ESCAPE  &lt 0 SPACE  &lt 1 TAB      &kp BACKSPACE  &kp ENTER                          &kp PERIOD
             >;
 
