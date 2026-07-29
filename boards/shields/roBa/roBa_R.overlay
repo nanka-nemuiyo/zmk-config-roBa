@@ -37,6 +37,12 @@
             layers = <11>;
             input-processors = <&zip_mouse_gesture_vdesk>;
         };
+
+        // LOCK(レイヤー8、チャイルドロック中)はX/Y移動量を0倍にしてトラックボールを無効化
+        disable_on_lock {
+            layers = <8>;
+            input-processors = <&zip_xy_scaler 0 1>;
+        };
     };
 
     // MOUSE-BROWSERとは別パターンにするため、別インスタンスとして定義
