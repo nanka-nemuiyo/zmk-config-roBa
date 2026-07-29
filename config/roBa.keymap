@@ -357,7 +357,7 @@
             >;
         };
 
-        MOUSE-VERTIALDESKTOP {
+        MOUSE-BROWSER {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
@@ -366,7 +366,7 @@
             >;
         };
 
-        MOUSE-BROWSER {
+        MOUSE-VERTIALDESKTOP {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
