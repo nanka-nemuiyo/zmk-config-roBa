@@ -29,89 +29,100 @@
     combos {
         compatible = "zmk,combos";
 
-        escape {
-            bindings = <&kp ESCAPE>;
-            key-positions = <1 0>;
+        child-lock {
+            bindings = <&tog 8>;
+            key-positions = <0 1 2 3>;
+            timeout-ms = <100>;
         };
 
         single-quotes {
             bindings = <&kp SINGLE_QUOTE>;
             key-positions = <5 6>;
+            layers = <0 3>;
         };
 
         double-quotes {
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <5 6 7>;
+            layers = <0 3>;
         };
 
         back-quote {
             bindings = <&kp GRAVE>;
             key-positions = <17 18>;
+            layers = <0 3>;
         };
 
         brackets {
             bindings = <&brackets>;
             key-positions = <14 17>;
+            layers = <0 3>;
         };
 
         parentheses {
             bindings = <&parentheses>;
             key-positions = <4 5>;
+            layers = <0 3>;
         };
 
         braces {
             bindings = <&braces>;
             key-positions = <26 29>;
-        };
-
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <10 11>;
+            layers = <0 3>;
         };
 
         muhenkan {
             bindings = <&kp INT_MUHENKAN>;
             key-positions = <27 26>;
+            layers = <0>;
         };
 
         henkan {
             bindings = <&kp INT_HENKAN>;
             key-positions = <28 29>;
+            layers = <0>;
         };
 
         mb3 {
             bindings = <&mkp MB3>;
-            key-positions = <31 32>;
+            key-positions = <18 19>;
+            layers = <9>;
         };
 
         semi-colon {
             bindings = <&kp SEMICOLON>;
             key-positions = <16 28>;
+            layers = <0 3 1>;
         };
 
         colon {
             bindings = <&kp COLON>;
             key-positions = <5 17>;
+            layers = <0 3 1>;
         };
 
         back-slash {
             bindings = <&kp BACKSLASH>;
             key-positions = <20 32>;
+            layers = <0 3 1>;
         };
 
         vertical-var {
             bindings = <&kp PIPE>;
             key-positions = <31 19>;
+            layers = <0 3 1>;
         };
 
         slash {
             bindings = <&kp SLASH>;
             key-positions = <18 30>;
+            layers = <0 1 3>;
         };
 
         caret {
             bindings = <&kp CARET>;
             key-positions = <17 6 19>;
+            layers = <0 3 1>;
         };
     };
 
@@ -213,6 +224,34 @@
             bindings = <&kp LEFT_SHIFT &kp END>;
             label = "SELECT_END";
         };
+
+        kakeru: kakeru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N5>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "KAKERU";
+        };
+
+        waru: waru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N7>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "WARU";
+        };
     };
 
     keymap {
@@ -220,10 +259,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R         &kp T                                      &kp Y      &kp U  &lt 0 I   &kp O     &kp P
-&lt 4 A           &lt 5 S       &kp D         &kp F         &kp G        &none          &kp MINUS      &kp H      &kp J  &kp K     &kp L     &kp DEL
-&mt LEFT_SHIFT Z  &lt 6 X       &kp C         &kp V         &lt 7 B      &mkp MB3       &kp SLASH      &lt 1 N    &kp M  &mkp MB1  &mkp MB2  &lt 2 COMMA
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 ESCAPE  &lt 0 SPACE  &lt 1 TAB      &kp BACKSPACE  &kp ENTER                             &kp PERIOD
+&kp Q             &kp W         &kp E         &kp R         &kp T                                      &kp Y      &kp U  &lt 0 I  &kp O   &kp P
+&lt 4 A           &lt 5 S       &kp D         &kp F         &kp G        &none          &kp MINUS      &kp H      &kp J  &kp K    &kp L   &mo 2
+&mt LEFT_SHIFT Z  &lt 6 X       &kp C         &kp V         &lt 7 B      &mkp MB3       &kp SLASH      &lt 1 N    &kp M  &mo 10   &mo 11  &lt 12 COMMA
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 ESCAPE  &lt 0 SPACE  &lt 1 TAB      &kp BACKSPACE  &kp ENTER                          &kp PERIOD
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -231,10 +270,10 @@
 
         NUMBER {
             bindings = <
-&kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_N4     &kp KP_N5                                  &kp KP_N6  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_N0
-&trans     &trans     &trans     &kp KP_PLUS   &kp KP_MULTIPLY  &trans            &trans  &trans     &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp PERCENT
-&trans     &trans     &trans     &kp KP_MINUS  &kp KP_SLASH     &kp KP_EQUAL      &trans  &trans     &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp COMMA
-&kp COLON  &trans     &trans     &trans        &trans           &trans            &trans  &trans                                      &kp DOT
+&kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_N4        &kp KP_N5                                &kp KP_N6  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_N0
+&trans     &trans     &kakeru    &kp KP_MULTIPLY  &kp KP_PLUS   &trans            &trans   &trans     &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp PERCENT
+&trans     &trans     &waru      &kp KP_SLASH     &kp KP_MINUS  &kp KP_EQUAL      &trans   &trans     &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp COMMA
+&kp COLON  &trans     &trans     &trans           &trans        &trans            &kp DEL  &trans                                      &kp DOT
             >;
         };
 
@@ -288,7 +327,52 @@
 &trans  &trans  &trans  &trans  &trans                      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                  &bt BT_CLR
+            >;
+        };
+
+        LOCK {
+            bindings = <
+&none  &none  &none  &none  &none                    &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none      &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none      &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none      &none  &none                       &none
+            >;
+        };
+
+        MOUSE {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB2  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB4  &mkp MB5  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
+            >;
+        };
+
+        MOUSE-SCROLL {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+            >;
+        };
+
+        MOUSE-VERTIALDESKTOP {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+            >;
+        };
+
+        MOUSE-BROWSER {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
         };
     };
