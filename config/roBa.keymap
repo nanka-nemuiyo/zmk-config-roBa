@@ -251,6 +251,25 @@
             label = "SCREEN_SHOT";
         };
 
+        web_search: web_search {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            // 右クリックメニューが開くまでの猶予を通常より長めに取る
+            wait-ms = <150>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_press>,
+                <&kp LSHIFT>,
+                <&macro_tap>,
+                <&kp F10>,
+                <&macro_release>,
+                <&kp LSHIFT>,
+                <&macro_tap>,
+                <&kp S>;
+
+            label = "WEB_SEARCH";
+        };
+
         select_left: select_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -404,8 +423,8 @@
         FUNCTION {
             bindings = <
 &kp F1   &kp F2   &kp F3  &kp F4  &kp F5                      &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
-&kp F11  &kp F12  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans   &trans   &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&kp F11  &kp F12  &trans  &trans  &trans  &trans      &kp C_BRI_UP  &kp C_VOL_DN  &kp LG(H)  &trans  &trans  &trans
+&trans   &trans   &kp C_AL_CALCULATOR  &trans  &trans  &trans      &kp C_BRI_DN  &kp C_VOL_UP  &kp C_MUTE  &trans  &trans  &trans
 &trans   &trans   &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
         };
@@ -468,7 +487,7 @@
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans    &trans    &trans    &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &mkp MB4  &mkp MB1  &mkp MB2  &mkp MB5  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans    &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans    &web_search  &trans    &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                  &trans
             >;
         };
