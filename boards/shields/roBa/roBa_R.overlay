@@ -1,4 +1,8 @@
 #include "roBa.dtsi"
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <input/processors.dtsi>
+#include <mouse-gesture.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -19,6 +23,78 @@
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        // トラックボールが動いたらレイヤー9(MOUSE)を有効化し、3000ms動きが無ければ自動解除
+        input-processors = <&zip_temp_layer 9 3000>;
+
+        // MOUSE-BROWSER(レイヤー12)の間はトラックボールの動きを常にジェスチャーとして扱う
+        gesture_on_browser {
+            layers = <12>;
+            input-processors = <&zip_mouse_gesture>;
+        };
+
+        // MOUSE-VERTIALDESKTOP(レイヤー11)の間はトラックボールの動きを常にジェスチャーとして扱う
+        gesture_on_vdesk {
+            layers = <11>;
+            input-processors = <&zip_mouse_gesture_vdesk>;
+        };
+    };
+
+    // MOUSE-BROWSERとは別パターンにするため、別インスタンスとして定義
+    zip_mouse_gesture_vdesk: zip_mouse_gesture_vdesk {
+        compatible = "zmk,input-processor-mouse-gesture";
+        #input-processor-cells = <0>;
+        always-active;
+        enable-eager-mode;
+
+        vdesk_prev {
+            pattern = <GESTURE_LEFT>;
+            bindings = <&kp LG(LC(LEFT))>;
+        };
+
+        vdesk_next {
+            pattern = <GESTURE_RIGHT>;
+            bindings = <&kp LG(LC(RIGHT))>;
+        };
+
+        task_view {
+            pattern = <GESTURE_UP>;
+            bindings = <&kp LG(TAB)>;
+        };
+
+        vdesk_send_next {
+            pattern = <GESTURE_DOWN>;
+            bindings = <&kp LG(LC(LS(RIGHT)))>;
+        };
+    };
+};
+
+&zip_temp_layer {
+    // MOUSEレイヤーに割り当て済みのキー(J/K/M/mo10位置)は押してもレイヤーを解除しない
+    excluded-positions = <18 19 30 31>;
+};
+
+&zip_mouse_gesture {
+    always-active;
+    enable-eager-mode;
+
+    prev_tab {
+        pattern = <GESTURE_LEFT>;
+        bindings = <&kp LC(LS(TAB))>;
+    };
+
+    next_tab {
+        pattern = <GESTURE_RIGHT>;
+        bindings = <&kp LC(TAB)>;
+    };
+
+    new_tab {
+        pattern = <GESTURE_UP>;
+        bindings = <&kp LC(T)>;
+    };
+
+    close_tab {
+        pattern = <GESTURE_DOWN>;
+        bindings = <&kp LC(W)>;
     };
 };
 
