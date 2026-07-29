@@ -6,6 +6,7 @@
 // OS側が日本語(JIS)キーボードとして認識している前提で、狙った記号が
 // 出力されるように変換したキーコード。左辺の文字を出したい場合、
 // 素直な同名キーコード(US配列前提)ではなく右辺を送る必要がある。
+
 #define JP_AT      LEFT_BRACKET      // @
 #define JP_DQT     LS(N2)            // "
 #define JP_SQT     LS(N7)            // '
@@ -146,6 +147,16 @@
             key-positions = <17 6 19>;
             layers = <0 3 1>;
         };
+
+        ctrl {
+            bindings = <&kp RCTRL>;
+            key-positions = <32 31>;
+        };
+
+        close {
+            bindings = <&close>;
+            key-positions = <36 3>;
+        };
     };
 
     macros {
@@ -180,6 +191,7 @@
                 <&kp LEFT>,
                 <&macro_release>,
                 <&kp LEFT_WIN>;
+
             label = "WINDOW_LEFT";
         };
 
@@ -193,6 +205,7 @@
                 <&kp RIGHT>,
                 <&macro_release>,
                 <&kp LEFT_WIN>;
+
             label = "WINDOW_RIGHT";
         };
 
@@ -206,6 +219,7 @@
                 <&kp UP>,
                 <&macro_release>,
                 <&kp LEFT_WIN>;
+
             label = "WINDOW_UP";
         };
 
@@ -219,6 +233,7 @@
                 <&kp DOWN>,
                 <&macro_release>,
                 <&kp LEFT_WIN>;
+
             label = "WINDOW_DOWN";
         };
 
@@ -227,13 +242,12 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press>,
-                <&kp LEFT_WIN>,
-                <&kp LEFT_SHIFT>,
+                <&kp LEFT_WIN &kp LEFT_SHIFT>,
                 <&macro_tap>,
                 <&kp S>,
                 <&macro_release>,
-                <&kp LEFT_WIN>,
-                <&kp LEFT_SHIFT>;
+                <&kp LEFT_WIN &kp LEFT_SHIFT>;
+
             label = "SCREEN_SHOT";
         };
 
@@ -247,6 +261,7 @@
                 <&kp LEFT>,
                 <&macro_release>,
                 <&kp LEFT_SHIFT>;
+
             label = "SELECT_LEFT";
         };
 
@@ -260,6 +275,7 @@
                 <&kp RIGHT>,
                 <&macro_release>,
                 <&kp LEFT_SHIFT>;
+
             label = "SELECT_RIGHT";
         };
 
@@ -273,6 +289,7 @@
                 <&kp UP>,
                 <&macro_release>,
                 <&kp LEFT_SHIFT>;
+
             label = "SELECT_UP";
         };
 
@@ -286,6 +303,7 @@
                 <&kp DOWN>,
                 <&macro_release>,
                 <&kp LEFT_SHIFT>;
+
             label = "SELECT_DOWN";
         };
 
@@ -299,6 +317,7 @@
                 <&kp HOME>,
                 <&macro_release>,
                 <&kp LEFT_SHIFT>;
+
             label = "SELECT_HOME";
         };
 
@@ -312,6 +331,7 @@
                 <&kp END>,
                 <&macro_release>,
                 <&kp LEFT_SHIFT>;
+
             label = "SELECT_END";
         };
 
@@ -342,6 +362,20 @@
 
             label = "WARU";
         };
+
+        close: close {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp F4>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "CLOSE";
+        };
     };
 
     keymap {
@@ -349,7 +383,7 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R         &kp T                                      &kp Y      &kp U  &lt 0 I  &kp O   &kp P
+&kp Q             &kp W         &kp E         &kp R         &kp T                                      &kp Y      &kp U  &lt 0 I  &kp O   &lt 4 P
 &lt 4 A           &lt 5 S       &kp D         &kp F         &kp G        &none          &kp MINUS      &kp H      &kp J  &kp K    &kp L   &mo 2
 &mt LEFT_SHIFT Z  &lt 6 X       &kp C         &kp V         &lt 7 B      &mkp MB3       &kp SLASH      &lt 1 N    &kp M  &mo 10   &mo 12  &lt 11 COMMA
 &kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 ESCAPE  &lt 0 SPACE  &lt 1 TAB      &kp BACKSPACE  &kp ENTER                          &kp PERIOD
@@ -360,10 +394,10 @@
 
         NUMBER {
             bindings = <
-&kp N1     &kp N2     &kp N3     &kp N4           &kp N5                                   &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
-&trans     &trans     &kakeru    &kp KP_MULTIPLY  &kp KP_PLUS   &trans            &trans   &trans     &kp N4     &kp N5     &kp N6     &kp PERCENT
-&trans     &trans     &waru      &kp KP_SLASH     &kp KP_MINUS  &kp KP_EQUAL      &trans   &trans     &kp N1     &kp N2     &kp N3     &kp COMMA
-&kp JP_COLON  &trans     &trans     &trans           &trans        &trans            &kp DEL  &trans                                      &kp DOT
+&kp N1        &kp N2  &kp N3   &kp N4           &kp N5                                   &kp N6  &kp N7  &kp N8  &kp N9  &kp N0
+&trans        &trans  &kakeru  &kp KP_MULTIPLY  &kp KP_PLUS   &trans            &trans   &trans  &kp N4  &kp N5  &kp N6  &kp PERCENT
+&trans        &trans  &waru    &kp KP_SLASH     &kp KP_MINUS  &kp KP_EQUAL      &trans   &trans  &kp N1  &kp N2  &kp N3  &kp COMMA
+&kp JP_COLON  &trans  &trans   &trans           &trans        &trans            &kp DEL  &trans                          &kp DOT
             >;
         };
 
@@ -378,10 +412,10 @@
 
         SYMBOL {
             bindings = <
-&kp QUESTION  &trans           &kp JP_EQUAL  &kp JP_ASTR      &kp JP_TILDE                   &kp INT_YEN    &kp JP_UNDS  &trans         &trans            &kp KP_PLUS
-&kp JP_AT     &kp SLASH        &kp DOLLAR    &trans           &trans     &trans      &trans  &kp HASH       &trans          &trans         &trans            &trans
-&trans        &kp EXCLAMATION  &kp JP_CARET  &trans           &trans     &trans      &trans  &kp JP_AMPS    &kp KP_MINUS    &kp LESS_THAN  &kp GREATER_THAN  &trans
-&trans        &trans           &trans      &trans            &trans     &trans      &trans  &trans                                                          &trans
+&kp QUESTION  &trans           &kp JP_EQUAL  &kp JP_ASTR  &kp JP_TILDE                      &kp INT_YEN  &kp JP_UNDS   &trans         &trans            &kp KP_PLUS
+&kp JP_AT     &kp SLASH        &kp DOLLAR    &trans       &trans        &trans      &trans  &kp HASH     &trans        &trans         &trans            &trans
+&trans        &kp EXCLAMATION  &kp JP_CARET  &trans       &trans        &trans      &trans  &kp JP_AMPS  &kp KP_MINUS  &kp LESS_THAN  &kp GREATER_THAN  &trans
+&trans        &trans           &trans        &trans       &trans        &trans      &trans  &trans                                                      &trans
             >;
         };
 
