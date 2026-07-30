@@ -270,6 +270,22 @@
             label = "WEB_SEARCH";
         };
 
+        vdesk_pin: vdesk_pin {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            // タスクビューの描画・フォーカス確定を待つため、通常より長めに取る
+            wait-ms = <200>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_tap>,
+                <&kp LG(TAB)>,
+                <&kp LS(F10)>,
+                <&kp DOWN &kp DOWN &kp DOWN>,
+                <&kp RETURN>;
+
+            label = "VDESK_PIN";
+        };
+
         select_left: select_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -486,7 +502,7 @@
         MOUSE {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans    &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &mkp MB4  &mkp MB1  &mkp MB2  &mkp MB5  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp C_AC_BACK  &mkp MB1  &mkp MB2  &kp C_AC_FORWARD  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans    &web_search  &trans    &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                  &trans
             >;

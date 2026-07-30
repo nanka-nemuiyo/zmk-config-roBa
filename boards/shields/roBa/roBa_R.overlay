@@ -69,7 +69,9 @@
 
         vdesk_send_next {
             pattern = <GESTURE_DOWN>;
-            bindings = <&kp LG(LC(LS(RIGHT)))>;
+            // Win+Tab -> Shift+F10 -> 下矢印x3 -> Enter で
+            // タスクビューの右クリックメニューから「このウィンドウをすべてのデスクトップに表示する」を選ぶ
+            bindings = <&vdesk_pin>;
         };
     };
 };
