@@ -26,15 +26,15 @@
         // トラックボールが動いたらレイヤー9(MOUSE)を有効化し、3000ms動きが無ければ自動解除
         input-processors = <&zip_temp_layer 9 3000>;
 
-        // MOUSE-BROWSER(レイヤー12)の間はトラックボールの動きを常にジェスチャーとして扱う
+        // MOUSE-BROWSER(レイヤー11)の間はトラックボールの動きを常にジェスチャーとして扱う
         gesture_on_browser {
-            layers = <12>;
+            layers = <11>;
             input-processors = <&zip_mouse_gesture>;
         };
 
-        // MOUSE-VERTIALDESKTOP(レイヤー11)の間はトラックボールの動きを常にジェスチャーとして扱う
+        // MOUSE-VERTIALDESKTOP(レイヤー12)の間はトラックボールの動きを常にジェスチャーとして扱う
         gesture_on_vdesk {
-            layers = <11>;
+            layers = <12>;
             input-processors = <&zip_mouse_gesture_vdesk>;
         };
 
